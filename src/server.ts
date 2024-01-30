@@ -2,6 +2,7 @@ import express from "express";
 import { sequelize } from "./database";
 import { adminJs, adminJsRouter } from "./adminjs";
 import { categoryRouter } from "./routes/categoryRoutes";
+import { courseRouter } from "./routes/courseRoutes";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(adminJs.options.rootPath, adminJsRouter);
 
 //Rotas
 app.use(categoryRouter);
+app.use(courseRouter);
 
 //Iniciando servidor
 const PORT = process.env.PORT || 3000;
