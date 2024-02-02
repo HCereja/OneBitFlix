@@ -1,6 +1,12 @@
 # Plataforma EAD inspirada no Netflix
 
-Plataforma EAD baseada no Netflix, utilizando JS e TS
+Plataforma EAD baseada no Netflix.
+
+Utilizando:
+ -AdminJs
+ -Express
+ -Sequelize
+ -TS
 
 ## Autor
 
