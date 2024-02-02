@@ -27,4 +27,16 @@ export const coursesController = {
       }
     }
   },
+
+  newest: async (req: Request, res: Response) => {
+    try {
+      const course = await courseService.getTopTenNewest();
+
+      return res.json(course);
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message });
+      }
+    }
+  },
 };
