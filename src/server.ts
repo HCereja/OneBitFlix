@@ -4,10 +4,12 @@ import { adminJs, adminJsRouter } from "./adminjs";
 import { categoryRouter } from "./routes/categoryRoutes";
 import { courseRouter } from "./routes/courseRoutes";
 import { episodeRouter } from "./routes/episodeRoutes";
+import { userRouter } from "./routes/userRoutes";
 
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.json());
 
 //AdminJs
 app.use(adminJs.options.rootPath, adminJsRouter);
@@ -16,6 +18,7 @@ app.use(adminJs.options.rootPath, adminJsRouter);
 app.use(categoryRouter);
 app.use(courseRouter);
 app.use(episodeRouter);
+app.use(userRouter);
 
 //Iniciando servidor
 const PORT = process.env.PORT || 3000;
