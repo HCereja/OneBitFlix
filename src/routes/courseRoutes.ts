@@ -7,6 +7,7 @@ const courseRouter = express.Router();
 courseRouter.get("/courses/featured", ensureAuth, coursesController.featured);
 courseRouter.get("/courses/newest", coursesController.newest);
 courseRouter.get("/courses/search", ensureAuth, coursesController.search);
+courseRouter.get("/courses/popular", ensureAuth, coursesController.getTopTen);
 courseRouter.get("/courses/:id", ensureAuth, coursesController.show);
 
 export { courseRouter };
