@@ -15,4 +15,12 @@ export const likeService = {
       where: { userId: userId, courseId: courseId },
     });
   },
+
+  isLiked: async (userId: number, courseId: number) => {
+    const like = await Like.findOne({
+      where: { courseId: courseId, userId: userId },
+    });
+
+    return like ? true : false;
+  },
 };
