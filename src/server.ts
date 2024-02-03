@@ -6,6 +6,7 @@ import { courseRouter } from "./routes/courseRoutes";
 import { episodeRouter } from "./routes/episodeRoutes";
 import { userRouter } from "./routes/userRoutes";
 import { favoriteRouter } from "./routes/favoriteRoutes";
+import { likeRouter } from "./routes/likeRoutes";
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use(courseRouter);
 app.use(episodeRouter);
 app.use(userRouter);
 app.use(favoriteRouter);
+app.use(likeRouter);
 
 //Iniciando servidor
 const PORT = process.env.PORT || 3000;
