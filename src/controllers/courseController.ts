@@ -14,7 +14,7 @@ export const coursesController = {
       const course = await courseService.findByIdWithEpisodes(id);
 
       if (!course) {
-        return res.status(404).json({ message: "course not found" });
+        return res.status(404).json({ message: "Curso não encontrado" });
       }
 
       const liked = await likeService.isLiked(userId, Number(id));
@@ -58,7 +58,7 @@ export const coursesController = {
 
     try {
       if (typeof name !== "string") {
-        throw new Error("name param must be a string");
+        throw new Error("name precisa ser uma string");
       }
 
       const course = await courseService.findByName(

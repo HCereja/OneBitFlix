@@ -10,7 +10,7 @@ export const authController = {
       const user = await userService.findByEmail(email);
 
       if (user) {
-        throw new Error("user already exists");
+        throw new Error("Usuário já cadastrado");
       }
 
       const newUser = await userService.create({
@@ -38,9 +38,7 @@ export const authController = {
       const user = await userService.findByEmail(email);
 
       if (!user) {
-        return res
-          .status(404)
-          .json({ message: "user not found/incorrect password" });
+        return res.status(404).json({ message: "Usuário ou senha incorretos" });
       }
 
       user.checkPassword(password, (err, isSame) => {
@@ -51,7 +49,7 @@ export const authController = {
         if (!isSame) {
           return res
             .status(401)
-            .json({ message: "user not found/incorrect password" });
+            .json({ message: "Usuário ou senha incorretos" });
         }
 
         const payload = {

@@ -16,14 +16,18 @@ export function ensureAuth(
   const authorizationHeader = req.headers.authorization;
 
   if (!authorizationHeader) {
-    return res.status(401).json({ message: "unauthorized: token not found" });
+    return res
+      .status(401)
+      .json({ message: "Não autorizado: token não foi informado" });
   }
 
   const token = authorizationHeader.replace(/Bearer /, "");
 
   jwtService.verifyToken(token, async (err, decoded) => {
     if (err || typeof decoded === "undefined") {
-      return res.status(401).json({ message: "unauthorized: invalid token" });
+      return res
+        .status(401)
+        .json({ message: "Não autorizado: token inválido" });
     }
 
     const user = await userService.findByEmail((decoded as JwtPayload).email);
@@ -41,16 +45,20 @@ export function ensureAuthViaQuery(
   const { token } = req.query;
 
   if (!token) {
-    return res.status(401).json({ message: "unauthorized: token not found" });
+    return res
+      .status(401)
+      .json({ message: "Não autorizado: token não foi informado" });
   }
 
   if (typeof token !== "string") {
-    return res.status(400).json({ message: "Token must be of type string" });
+    return res.status(400).json({ message: "Token precisa ser uma string" });
   }
 
   jwtService.verifyToken(token, async (err, decoded) => {
     if (err || typeof decoded === "undefined") {
-      return res.status(401).json({ message: "unauthorized: invalid token" });
+      return res
+        .status(401)
+        .json({ message: "Não autorizado: token inválido" });
     }
 
     const user = await userService.findByEmail((decoded as JwtPayload).email);
