@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import { sequelize } from "./database";
 import { adminJs, adminJsRouter } from "./adminjs";
 import { categoryRouter } from "./routes/categoryRoutes";
@@ -9,6 +10,9 @@ import { favoriteRouter } from "./routes/favoriteRoutes";
 import { likeRouter } from "./routes/likeRoutes";
 
 const app = express();
+
+//Atualizar depois do deploy
+app.use(cors());
 
 app.use(express.static("public"));
 app.use(express.json());
