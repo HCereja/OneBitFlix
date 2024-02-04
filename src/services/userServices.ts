@@ -64,4 +64,22 @@ export const userService = {
 
     return keepWatchingList;
   },
+
+  update: async (
+    userId: number,
+    attributes: {
+      firstName?: string;
+      lastName?: string;
+      phone?: string;
+      birth?: Date;
+      email?: string;
+    }
+  ) => {
+    const [affectedRows, updatedUser] = await User.update(attributes, {
+      where: { id: userId },
+      returning: true,
+    });
+
+    return updatedUser[0];
+  },
 };

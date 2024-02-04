@@ -9,5 +9,6 @@ userRouter.post("/auth/register", authController.register);
 userRouter.post("/auth/login", authController.login);
 userRouter.get("/users/current/watching", ensureAuth, userController.watching);
 userRouter.get("/users/current", ensureAuth, userController.show);
+userRouter.put("/users/update", ensureAuth, userController.update);
 
 export { userRouter };
