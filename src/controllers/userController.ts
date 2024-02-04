@@ -49,4 +49,27 @@ export const userController = {
       }
     }
   },
+
+  updatePassword: async (req: AuthenticatedRequest, res: Response) => {
+    const user = req.user!;
+    const { password, newPassword } = req.body;
+
+    try {
+      user.checkPassword(password, async (err, isSame) => {
+        if (err) {
+          return res.status(400).json({ message: err.message });
+        }
+        if (!isSame) {
+          return res.status(400).json({ message: "Senha atual incorreta" });
+        }
+
+        await userService.updatePassword(user.id, newPassword);
+        return res.status(204).send();
+      });
+    } catch (err) {
+      if (err instanceof Error) {
+        return res.status(400).json({ message: err.message });
+      }
+    }
+  },
 };
